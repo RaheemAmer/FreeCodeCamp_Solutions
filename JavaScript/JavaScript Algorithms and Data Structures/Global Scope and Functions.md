@@ -1,36 +1,33 @@
-**Variables** which are **declared** within a **function**, as well as the **function parameters**, have **local scope**. That means they are only **visible** within that **function**.
+In JavaScript, **scope refers** to the **visibility** of **variables**. **Variables** which are **defined outside** of a **function block** have **Global** **scope**. This means, they can be seen everywhere in your JavaScript code.
 
-```jsx
-function myTest() {
-  const loc = "foo";
-  console.log(loc);
-}
-myTest(); // foo
-console.log(loc); //Uncaught ReferenceError
-```
+**Variables** which are **declared** without the `let` or `const` **keywords** are **automatically** **created** in the `**global`scope**. This can **create unintended consequences** elsewhere in your **code** or when **running** a **function** **again**. You should **always** **declare** your **variables** with `let` or `const`.
 
 <aside>
-💡 The `myTest()` function call will display the string `foo` in the console. The `console.log(loc)` line (outside of the `myTest` function) will throw an error, as `loc` is not defined outside of the function.
+💡 Using `let` or `const`, declare a global variable named `myGlobal` outside of any function. Initialize it with a value of `10`.
 
----
-
-The editor has two `console.log`s to help you see what is happening. Check the console as you code to see how it changes. Declare a local variable `myVar` inside `myLocalScope` and run the tests.
-
----
-
-**Note:** The console will still display `ReferenceError: myVar is not defined`, but this will not cause the tests to fail.
+Inside function `fun1`, assign `5` to `oopsGlobal` ***without*** using the `var`, `let` or `const` keywords.
 
 </aside>
 
 ```jsx
-function myLocalScope() {
-  // Only change code below this line
+// Declare the myGlobal variable below this line
+let myGlobal = 10;
 
-  console.log('inside myLocalScope', myVar);
+function fun1() {
+  // Assign 5 to oopsGlobal Here
+  oopsGlobal = 5;
 }
-myLocalScope();
 
-// Run and check the console
-// myVar is not defined outside of myLocalScope
-console.log('outside myLocalScope', myVar);
+// Only change code above this line
+
+function fun2() {
+  var output = "";
+  if (typeof myGlobal != "undefined") {
+    output += "myGlobal: " + myGlobal;
+  }
+  if (typeof oopsGlobal != "undefined") {
+    output += " oopsGlobal: " + oopsGlobal;
+  }
+  console.log(output);
+}
 ```
